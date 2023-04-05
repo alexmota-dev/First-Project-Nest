@@ -3,7 +3,7 @@
 </p>
 
 ## Description
-The [Nest](https://github.com/nestjs/nest) is using this aplication.
+The [Nest](https://github.com/nestjs/nest) framework is being used in this application.
 
 ## Installation
 ```bash
