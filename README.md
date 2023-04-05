@@ -3,7 +3,7 @@
 </p>
 
 ## Description
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The [Nest](https://github.com/nestjs/nest) is using this aplication.
 
 ## Installation
 ```bash
