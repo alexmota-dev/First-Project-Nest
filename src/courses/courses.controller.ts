@@ -6,6 +6,8 @@ import {
   Post,
   Patch,
   Delete,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 
@@ -24,7 +26,14 @@ export default class CoursesController {
   //recebe apenas o id
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.coursesService.findOne(id);
+    const course = this.coursesService.findOne(id);
+    if (!course) {
+      throw new HttpException(
+        `Course id ${id} not found`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return course;
   }
 
   @Patch(':id')
