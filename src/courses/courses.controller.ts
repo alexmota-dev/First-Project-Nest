@@ -10,6 +10,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './dto/create-course.dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto/update-course.dto';
 
 @Controller('courses')
 export default class CoursesController {
@@ -20,8 +22,8 @@ export default class CoursesController {
     return this.coursesService.findAll();
   }
   @Post()
-  create(@Body() body) {
-    return this.coursesService.create(body);
+  create(@Body() createCourseDto: CreateCourseDto) {
+    return this.coursesService.create(createCourseDto);
   }
   //recebe apenas o id
   @Get(':id')
@@ -37,8 +39,8 @@ export default class CoursesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body) {
-    return this.coursesService.update(id, body);
+  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
+    return this.coursesService.update(id, updateCourseDto);
   }
   @Delete(':id')
   remove(@Param('id') id: string) {
