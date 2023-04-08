@@ -24,3 +24,18 @@ $ npm run start:dev $
 ```bash 
 $ npm run start:prod $
 ```
+
+## Ao usar o useGlobalPipe() é necessario instalar duas libs:
+```bash 
+$ npm i class-validator class-transformer
+```
+
+## Para reaproveitar um CreateGenericDto em um UpdateGenericDto é necessario instalar a lib:
+```bash 
+$ npm i @nestjs/mapped-types
+```
+
+## Para para conexão com o BD é necessario a instalação do typeOrm e do pg
+```bash 
+$ npm i typeorm @nestjs/typeorm pg
+```
