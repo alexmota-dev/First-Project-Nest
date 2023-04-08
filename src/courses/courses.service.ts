@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm/dist';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './dto/create-course.dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto/update-course.dto';
-import { Course } from './entity/course.entity';
+import { Course } from './entities/course.entity';
 
 @Injectable()
 export class CoursesService {
@@ -52,6 +52,6 @@ export class CoursesService {
     if (!courseToBeRemoved) {
       throw new NotFoundException(`Course ID ${id} not found`);
     }
-    return this.courseRepository.save(courseToBeRemoved);
+    return this.courseRepository.remove(courseToBeRemoved);
   }
 }
