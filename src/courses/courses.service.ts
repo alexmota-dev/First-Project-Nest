@@ -1,41 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm/dist';
+import { Repository } from 'typeorm';
 import { Course } from './entity/course.entity';
 
 @Injectable()
 export class CoursesService {
-  private courses: Course[] = [
-    {
-      id: 1,
-      name: 'fundamentos de banco de dados',
-      description: 'o basico sobre DB',
-      tags: ['Mysql', 'Postgres', 'MariaDB'],
-    },
-  ];
+  constructor(
+    @InjectRepository(Course)
+    private readonly courseRepository: Repository<Course>,
+  ) {}
+
   findAll() {
-    return this.courses;
+    return this.courseRepository.find();
   }
 
   findOne(id: string) {
-    return this.courses.find((course) => course.id == Number(id));
+    //A mudança do typeORM 0.2 para o 0.3 abandonou a função findOneBy
+    //E a função findOne agora recebe um objeto com as propriedades da pesquisa.
+    const course = this.courseRepository.findOne({
+      where: { id: parseInt(id, 10) },
+    });
+
+    if (!course) {
+      throw new NotFoundException(`Course ID ${id} not found`);
+    }
+    return course;
   }
 
   create(createCourseDto: any) {
-    this.courses.push(createCourseDto);
+    return this.courseRepository.create(createCourseDto);
   }
 
   update(id: string, updateCourseDto: any) {
-    const indexCourse = this.courses.findIndex(
-      (course) => course.id == Number(id),
-    );
-    this.courses[indexCourse] = updateCourseDto;
+    const courseUpdate = this.courseRepository.update(id, updateCourseDto);
+    if (!courseUpdate) {
+      throw new NotFoundException(`Course ID ${id} not updated`);
+    }
+    return courseUpdate;
   }
 
   remove(id: string) {
-    const indexCourse = this.courses.findIndex(
-      (course) => course.id == Number(id),
-    );
-    if (indexCourse >= 0) {
-      this.courses.splice(indexCourse, 1);
-    }
+    const courseRemove = this.courseRepository.delete(id);
+    return courseRemove;
   }
 }
