@@ -16,7 +16,7 @@ export class CoursesService {
   ) {}
 
   findAll() {
-    return this.courseRepository.find();
+    return this.courseRepository.find({ relations: ['tags'] });
   }
 
   findOne(id: string) {
@@ -24,6 +24,7 @@ export class CoursesService {
     //E a função findOne agora recebe um objeto com as propriedades da pesquisa.
     const course = this.courseRepository.findOne({
       where: { id: parseInt(id, 10) },
+      relations: ['tags'],
     });
 
     if (!course) {
