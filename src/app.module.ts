@@ -15,7 +15,7 @@ import { CoursesModule } from './courses/courses.module';
       username: 'postgres',
       password: 'root',
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: true, //está linha de codigo NUNCA pode subir para um servidor.
     }),
   ],
   controllers: [AppController],
