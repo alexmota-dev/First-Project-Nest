@@ -39,3 +39,14 @@ $ npm i @nestjs/mapped-types
 ```bash 
 $ npm i typeorm @nestjs/typeorm pg
 ```
+
+## Criar migrations com TypeORM
+### 0.2* TypeORM
+```bash
+$ typeorm migration:create -n CourseRefactoring
+```
+### 0.3* TypeORM
+```bash
+$ typeorm migration:create -n src/CourseRefactoring
+```
+#### Atualmente a propriedade -n não é mais usada.
