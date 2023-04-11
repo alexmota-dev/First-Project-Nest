@@ -50,3 +50,7 @@ $ typeorm migration:create -n CourseRefactoring
 $ typeorm migration:create -n src/CourseRefactoring
 ```
 #### Atualmente a propriedade -n não é mais usada.
+
+### Por enquanto o projeto fica parado, infelizmente to com um problema ao rodar as migrations.
+Se o arquivo de migration for em ts ele só roda com o comando:
+npx typeorm-ts-node-commonjs migration:run -- -d data-source.ts
