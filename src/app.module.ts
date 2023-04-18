@@ -15,7 +15,7 @@ import { CoursesModule } from './courses/courses.module';
       password: 'docker',
       database: 'cursonestjs',
       autoLoadEntities: true,
-      synchronize: false, //está linha de codigo NUNCA pode subir para um servidor.
+      synchronize: false, //está linha de codigo NUNCA pode subir para um servidor como true.
     }),
   ],
   controllers: [AppController],
